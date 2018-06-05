@@ -105,9 +105,8 @@ def getRandomTrackID():
 
 
 def generateRandomInvoice(invoiceId, customerID):
-    print('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", "' + str(getRandomArrayFromOpts(adresses)) + '", "' + str(getRandomArrayFromOpts(towns)) + '", "' + str(getRandomArrayFromOpts(cities)) + '", "USA", "' + str(randint(1010, 9999)) + '", 0.99);')
-    return str('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", "' + str(getRandomArrayFromOpts(adresses)) + '", "' + str(getRandomArrayFromOpts(towns)) + '", "' + str(getRandomArrayFromOpts(cities)) + '", "USA", "' + str(randint(1010, 9999)) + '", 0.99);')
-
+    print('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', \'' + str(getRandomDate()) + '\', \'' + str(getRandomArrayFromOpts(adresses)) + '\', \'' + str(getRandomArrayFromOpts(towns)) + '\', \'' + str(getRandomArrayFromOpts(cities)) + '\', \'USA\', \'' + str(randint(1010, 9999)) + '\', 0.99);')
+    return str('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', \'' + str(getRandomDate()) + '\', \'' + str(getRandomArrayFromOpts(adresses)) + '\', \'' + str(getRandomArrayFromOpts(towns)) + '\', \'' + str(getRandomArrayFromOpts(cities)) + '\', \'USA\', \'' + str(randint(1010, 9999)) + '\', 0.99);')
 
 def generateRandomInvoiceLine(invoiceLineId, invoiceId):
     print('INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES (' + str(invoiceLineId) + ', ' + str(invoiceId) + ', ' + str(getRandomTrackID()) + ', 0.99, 1);')
