@@ -96,7 +96,7 @@ def getRandomArrayFromOpts(opts):
 
 
 def getRandomDate():
-    return str(randint(2015, 2020)) + "/" + str(randint(1, 12)) + "/" + str(randint(1, 31))
+    return str(randint(2015, 2020)) + "/" + str(randint(1, 12)) + "/" + str(randint(1, 29))
 
 
 def getRandomTrackID():
