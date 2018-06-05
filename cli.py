@@ -63,7 +63,7 @@ def main(args):
 
 
 def generateData(days):
-    cur.execute('SELECT invoice.invoiceId,invoice.customerID FROM invoice ORDER BY invoiceId DESC LIMIT 1')
+    cur.execute('SELECT * FROM invoice ORDER BY invoiceId DESC LIMIT 1')
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
