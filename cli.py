@@ -75,8 +75,6 @@ def generateData(days):
     # display the PostgreSQL database server version
     data = cur.fetchone()
     inlineID = data[0]
-	print("invoice ID is: "+str(invoiceID))
-	print("inline ID is: "+str(inlineID))
     # generate n invoice lines
     for temp_invoice_id in range(invoiceID+1, invoiceID +1+ days * randint(1, 10)):
         cur.execute(generateRandomInvoice(temp_invoice_id, getClientID()))
