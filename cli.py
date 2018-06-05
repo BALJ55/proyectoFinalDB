@@ -34,32 +34,15 @@ cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA"
           "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
           "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
 
-conn = None
-cur = None
-def main(args):
-    exitFlag = False
-    conn = None
-    try:
-        # read connection parameters
-
-        # connect to the PostgreSQL server
-        print('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(database="Chinook" ,
+conn = psycopg2.connect(database="Chinook" ,
                         user="postgres",
                         password="pascalito" ,
                         host="127.0.0.1" ,
                         port="5432" )
+cur = conn.cursor()
 
-        # create a cursor
-        cur = conn.cursor()
-
-        # execute a statement
-        print('PostgreSQL database version:')
-
-
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-
+def main(args):
+    exitFlag = False
 
     while not exitFlag:
         print_menu()
