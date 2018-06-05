@@ -46,7 +46,7 @@ def main(args):
 
     while not exitFlag:
         print_menu()
-        chosenOption = input("Ingrese su opción: ")
+        chosenOption = int(input("Ingrese su opción: "))
 
         if chosenOption == 1:
             generateData(7)
