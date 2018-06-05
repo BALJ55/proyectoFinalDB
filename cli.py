@@ -105,11 +105,11 @@ def getRandomTrackID():
 
 
 def generateRandomInvoice(invoiceId, customerID):
-    return 'INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + invoiceId + ', ' + customerID + ', "' + getRandomDate() + '", N"' + getRandomArrayFromOpts(adresses) + '", N"' + getRandomArrayFromOpts(towns) + '", N"' + getRandomArrayFromOpts(cities) + '", N"USA", N"' + randint(1010, 9999) + '", 0.99);'
+    return str('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + invoiceId + ', ' + customerID + ', "' + getRandomDate() + '", N"' + getRandomArrayFromOpts(adresses) + '", N"' + getRandomArrayFromOpts(towns) + '", N"' + getRandomArrayFromOpts(cities) + '", N"USA", N"' + randint(1010, 9999) + '", 0.99);')
 
 
 def generateRandomInvoiceLine(invoiceLineId, invoiceId):
-    return 'INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES (' + invoiceLineId + ', ' + invoiceId + ', ' + getRandomTrackID() + ', 0.99, 1);'
+    return str('INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES (' + invoiceLineId + ', ' + invoiceId + ', ' + getRandomTrackID() + ', 0.99, 1);')
 
 
 def print_menu():
