@@ -34,12 +34,14 @@ cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA"
           "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
           "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
 
-conn = psycopg2.connect(database="Chinook" ,
+conn = psycopg2.connect(database="Chinook",
                         user="postgres",
-                        password="pascalito" ,
-                        host="127.0.0.1" ,
-                        port="5432" )
+                        password="pascalito",
+                        host="127.0.0.1",
+                        port="5432")
 cur = conn.cursor()
+temp_inline_holder = 0
+
 
 def main(args):
     exitFlag = False
@@ -63,13 +65,27 @@ def main(args):
 
 
 def generateData(days):
-    cur.execute('SELECT "invoiceId","customerId" FROM invoice ORDER BY "invoiceId" DESC LIMIT 1')
+    cur.execute('SELECT "invoiceId" FROM invoice ORDER BY "invoiceId" DESC LIMIT 1')
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
-    print(data)
+    invoiceID = data[0]
+    cur.execute('SELECT "invoicelineId" FROM invoiceline ORDER BY "invoicelineId" DESC LIMIT 1')
 
+    # display the PostgreSQL database server version
+    data = cur.fetchone()
+    inlineID = data[0]
 
+    # generate n invoice lines
+    for temp_invoice_id in range(invoiceID, invoiceID + days * randint(1, 10)):
+        cur.execute(generateRandomInvoice(temp_invoice_id, getClientID()))
+        print("generated new invoice_id")
+        for temp_inline_id in range(inlineID,inlineID+3):
+            cur.execute(generateRandomInvoiceLine(temp_inline_id,temp_invoice_id))
+            print("generated new inline")
+        inlineID = inlineID+4
+
+    print("se han generado registros")
 
 def getClientID():
     return randint(1, 59)
@@ -82,10 +98,14 @@ def getRandomArrayFromOpts(opts):
 def getRandomDate():
     return randint(2015, 2020) + "/" + randint(1, 12) + "/" + randint(1, 31)
 
+def getRandomTrackID():
+    return randint(1,3503)
 
-def generateRandomInvoiceLine(invoiceId, customerID):
+def generateRandomInvoice(invoiceId, customerID):
     return 'INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + invoiceId + ', ' + customerID + ', "' + getRandomDate() + '", N"' + getRandomArrayFromOpts(adresses) + '", N"' + getRandomArrayFromOpts(towns) + '", N"' + getRandomArrayFromOpts(cities) + '", N"USA", N"' + randint(1010, 9999) + '", 0.99);'
 
+def generateRandomInvoiceLine(invoiceLineId,invoiceId):
+    return 'INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES ('+invoiceLineId+', '+invoiceId+', '+getRandomTrackID()+', 0.99, 1);'
 
 def print_menu():
     print("")
