@@ -67,7 +67,7 @@ def generateData(days):
     latest_inline_id = conn.fetchone()
 
     print(latest_inline_id)
-    pass
+
 
 
 def getClientID():
@@ -87,6 +87,7 @@ def generateRandomInvoiceLine(invoiceId, customerID):
 
 
 def print_menu():
+    print("")
     print(" 1) Generar data para una semana")
     print(" 2) Generar data para un mes")
     print(" 3) Generar data para seis meses")
