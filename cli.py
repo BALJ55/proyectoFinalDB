@@ -25,14 +25,14 @@ adresses = ["4 Smith Store St.Danbury, CT 06810", "8932 Boston Street North Roya
             "1 Lincoln Ave. Canyon Country, CA 91387", "8263 Jones Court West Roxbury, MA 02132",
             "79 Bay Meadows St. Kernersville, NC 27284", "34 Chestnut Court Riverview, FL 33569",
             "389 South Redwood St. Lumberton, NC 28358"]
-towns = ["St.Danbury", "Boston", "St. Petersburg", "New York", "Jonesborough", "Cranberry", "Ridgefield", "Maryville",
-         "Hanover", "Ametyville", "Lakewood", "Bradenton", "Carpenter", "Soyth Poplar", "Collierville", "Fresno",
-         "Bayonne", "Fairfax", "Oviedo", "Oak Ridge", "Vienna", "Southampton", "Olney", "Vicksburg", "Matthews",
+towns = ["St.Danbury", "Bosto", "St. Petersburg", "New York", "Jonesborough", "Cranberry", "Ridgefield", "Maryville",
+         "Hanover", "Ametyville", "Lakewood", "Bradento", "Carpenter", "Soyth Poplar", "Collierville", "Fresno",
+         "Bayonne", "Fairfax", "Oviedo", "Oak Ridge", "Vienna", "Southampto", "Olney", "Vicksburg", "Matthews",
          "Islip", "Waldorf", "Gastonia", "Safford", "Milledgeville", "Marcus Hook", "Schaumburg", "Omaha", "Seymour",
-         "Canyon Country", "Roxbury", "Kernersville", "Riverview", "Lumberton"]
-cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA",
-          "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
-          "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
+         "Canyon Country", "Roxbury", "Kernersville", "Riverview", "Lumberto"]
+cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "I", "KS", "KY", "LA",
+          "MA", "MD", "ME", "MI", "M", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
+          "OR", "PA", "RI", "SC", "SD", "T", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
 
 conn = psycopg2.connect(database="Chinook",
                         user="postgres",
@@ -105,8 +105,8 @@ def getRandomTrackID():
 
 
 def generateRandomInvoice(invoiceId, customerID):
-    print('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", N"' + str(getRandomArrayFromOpts(adresses)) + '", N"' + str(getRandomArrayFromOpts(towns)) + '", N"' + str(getRandomArrayFromOpts(cities)) + '", N"USA", N"' + str(randint(1010, 9999)) + '", 0.99);')
-    return str('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", N"' + str(getRandomArrayFromOpts(adresses)) + '", N"' + str(getRandomArrayFromOpts(towns)) + '", N"' + str(getRandomArrayFromOpts(cities)) + '", N"USA", N"' + str(randint(1010, 9999)) + '", 0.99);')
+    print('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", "' + str(getRandomArrayFromOpts(adresses)) + '", "' + str(getRandomArrayFromOpts(towns)) + '", "' + str(getRandomArrayFromOpts(cities)) + '", "USA", "' + str(randint(1010, 9999)) + '", 0.99);')
+    return str('INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + str(invoiceId) + ', ' + str(customerID) + ', "' + str(getRandomDate()) + '", "' + str(getRandomArrayFromOpts(adresses)) + '", "' + str(getRandomArrayFromOpts(towns)) + '", "' + str(getRandomArrayFromOpts(cities)) + '", "USA", "' + str(randint(1010, 9999)) + '", 0.99);')
 
 
 def generateRandomInvoiceLine(invoiceLineId, invoiceId):
