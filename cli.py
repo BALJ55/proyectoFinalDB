@@ -94,7 +94,7 @@ def getClientID():
 
 
 def getRandomArrayFromOpts(opts):
-    return opts[randint(0, len(opts))]
+    return opts[randint(0, len(opts)-1)]
 
 
 def getRandomDate():
