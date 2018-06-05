@@ -34,11 +34,11 @@ cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA"
           "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
           "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
 
-conn = psycopg2.connect(database="Chinook" if not args[0] else args[0],
-                        user="postgres" if not args[1] else args[1],
-                        password="pascalito" if not args[2] else args[2],
-                        host="127.0.0.1" if not args[3] else args[3],
-                        port="5432" if not args[4] else args[4])
+conn = psycopg2.connect(database="Chinook" ,
+                        user="postgres",
+                        password="pascalito" ,
+                        host="127.0.0.1" ,
+                        port="5432" )
 
 def main(args):
     exitFlag = False
