@@ -63,7 +63,7 @@ def main(args):
 
 
 def generateData(days):
-    conn.execute('SELECT max(invoiceId) FROM invoice')
+    conn.execute('SELECT max(invoiceId),customerID FROM invoice')
     latest_inline_id = conn.fetchone()
 
     print(latest_inline_id)
