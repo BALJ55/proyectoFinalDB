@@ -94,6 +94,5 @@ def print_menu():
     print(" 5) Salir")
 
 
-def connect_to_db(args):
-    if __name__ == '__main__':
-        main(sys.argv)
+if __name__ == '__main__':
+    main(sys.argv)
