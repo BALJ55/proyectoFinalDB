@@ -16,8 +16,8 @@
       <file leaf-file-name="cli.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="112" column="192" selection-start-line="112" selection-start-column="192" selection-end-line="112" selection-end-column="192" />
+            <state relative-caret-position="260">
+              <caret line="113" column="212" selection-start-line="113" selection-start-column="212" selection-end-line="113" selection-end-column="212" />
               <folding>
                 <element signature="e#25#35#0" expanded="true" />
               </folding>
@@ -179,8 +179,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="112" column="192" selection-start-line="112" selection-start-column="192" selection-end-line="112" selection-end-column="192" />
+        <state relative-caret-position="260">
+          <caret line="113" column="212" selection-start-line="113" selection-start-column="212" selection-end-line="113" selection-end-column="212" />
           <folding>
             <element signature="e#25#35#0" expanded="true" />
           </folding>
