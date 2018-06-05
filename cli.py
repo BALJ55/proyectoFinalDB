@@ -34,14 +34,36 @@ cities = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "IA"
           "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK",
           "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
 
-conn = psycopg2.connect(database="Chinook" ,
+conn = None
+cur = None
+def main(args):
+    exitFlag = False
+    conn = None
+    try:
+        # read connection parameters
+        params = config()
+
+        # connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(database="Chinook" ,
                         user="postgres",
                         password="pascalito" ,
                         host="127.0.0.1" ,
                         port="5432" )
 
-def main(args):
-    exitFlag = False
+        # create a cursor
+        cur = conn.cursor()
+
+        # execute a statement
+        print('PostgreSQL database version:')
+        cur.execute('SELECT version()')
+
+        # display the PostgreSQL database server version
+        db_version = cur.fetchone()
+        print(db_version)
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
 
 
     while not exitFlag:
@@ -63,7 +85,7 @@ def main(args):
 
 
 def generateData(days):
-    conn.execute('SELECT max(invoiceId),customerID FROM invoice')
+    cur.execute('SELECT max(invoiceId),customerID FROM invoice')
     latest_inline_id = conn.fetchone()
 
     print(latest_inline_id)
