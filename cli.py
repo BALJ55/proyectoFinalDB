@@ -55,11 +55,7 @@ def main(args):
 
         # execute a statement
         print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
 
-        # display the PostgreSQL database server version
-        db_version = cur.fetchone()
-        print(db_version)
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -85,9 +81,10 @@ def main(args):
 
 def generateData(days):
     cur.execute('SELECT max(invoiceId),customerID FROM invoice')
-    latest_inline_id = conn.fetchone()
 
-    print(latest_inline_id)
+    # display the PostgreSQL database server version
+    data = cur.fetchone()
+    print(data)
 
 
 
