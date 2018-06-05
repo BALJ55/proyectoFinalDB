@@ -69,21 +69,22 @@ def generateData(days):
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
-    invoiceID = data[0]+1
+    invoiceID = data[0]
     cur.execute('SELECT "invoicelineId" FROM invoiceline ORDER BY "invoicelineId" DESC LIMIT 1')
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
-    inlineID = data[0]+1
-
+    inlineID = data[0]
+	print("invoice ID is: "+str(invoiceID))
+	print("inline ID is: "+str(inlineID))
     # generate n invoice lines
-    for temp_invoice_id in range(invoiceID, invoiceID + days * randint(1, 10)):
+    for temp_invoice_id in range(invoiceID+1, invoiceID +1+ days * randint(1, 10)):
         cur.execute(generateRandomInvoice(temp_invoice_id, getClientID()))
         print("generated new invoice_id")
-        for temp_inline_id in range(inlineID, inlineID + 3):
+        for temp_inline_id in range(inlineID+1, inlineID + 4):
             cur.execute(generateRandomInvoiceLine(temp_inline_id, temp_invoice_id))
             print("generated new inline")
-        inlineID = inlineID + 4
+        inlineID = inlineID + 5
 
     print("se han generado registros")
 
