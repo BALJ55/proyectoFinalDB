@@ -69,12 +69,12 @@ def generateData(days):
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
-    invoiceID = data[0]
+    invoiceID = data[0]+1
     cur.execute('SELECT "invoicelineId" FROM invoiceline ORDER BY "invoicelineId" DESC LIMIT 1')
 
     # display the PostgreSQL database server version
     data = cur.fetchone()
-    inlineID = data[0]
+    inlineID = data[0]+1
 
     # generate n invoice lines
     for temp_invoice_id in range(invoiceID, invoiceID + days * randint(1, 10)):
