@@ -80,12 +80,13 @@ def generateData(days):
     for temp_invoice_id in range(invoiceID, invoiceID + days * randint(1, 10)):
         cur.execute(generateRandomInvoice(temp_invoice_id, getClientID()))
         print("generated new invoice_id")
-        for temp_inline_id in range(inlineID,inlineID+3):
-            cur.execute(generateRandomInvoiceLine(temp_inline_id,temp_invoice_id))
+        for temp_inline_id in range(inlineID, inlineID + 3):
+            cur.execute(generateRandomInvoiceLine(temp_inline_id, temp_invoice_id))
             print("generated new inline")
-        inlineID = inlineID+4
+        inlineID = inlineID + 4
 
     print("se han generado registros")
+
 
 def getClientID():
     return randint(1, 59)
@@ -98,14 +99,18 @@ def getRandomArrayFromOpts(opts):
 def getRandomDate():
     return randint(2015, 2020) + "/" + randint(1, 12) + "/" + randint(1, 31)
 
+
 def getRandomTrackID():
-    return randint(1,3503)
+    return randint(1, 3503)
+
 
 def generateRandomInvoice(invoiceId, customerID):
     return 'INSERT INTO "invoice" ("invoiceId", "customerId", "invoiceDate", "BillingAddress", "BillingCity", "BillingState", "BillingCountry", "BillingPostalCode", "Total") VALUES (' + invoiceId + ', ' + customerID + ', "' + getRandomDate() + '", N"' + getRandomArrayFromOpts(adresses) + '", N"' + getRandomArrayFromOpts(towns) + '", N"' + getRandomArrayFromOpts(cities) + '", N"USA", N"' + randint(1010, 9999) + '", 0.99);'
 
-def generateRandomInvoiceLine(invoiceLineId,invoiceId):
-    return 'INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES ('+invoiceLineId+', '+invoiceId+', '+getRandomTrackID()+', 0.99, 1);'
+
+def generateRandomInvoiceLine(invoiceLineId, invoiceId):
+    return 'INSERT INTO "invoiceline" ("invoicelineId", "invoiceId", "trackId", "UnitPrice", "Quantity") VALUES (' + invoiceLineId + ', ' + invoiceId + ', ' + getRandomTrackID() + ', 0.99, 1);'
+
 
 def print_menu():
     print("")
